@@ -12,9 +12,9 @@ Client-Server / N-tier architecture, built with Open Closed principle in mind.
 - Version Control: Git
 - Scrum board: Github
 - Front-end: 
--- Framework: built using React OOP class structure with props and data manipulation to represent our UI
--- Language: JavaScript, HTML, CSS
--- Library: Material UI, React Router, React Redux, Axioms
+  - Framework: built using React OOP class structure with props and data manipulation to represent our UI
+  - Language: JavaScript, HTML, CSS
+  - Library: Material UI, React Router, React Redux, Axioms
 
 ## Back-end:
 - Framework: Express.js

@@ -1,4 +1,4 @@
-# Echo
+![Echo logo](/assets/images/echo_logo_color.png)
 Kubernetes Semester Group Project
 Groupmates: Linhao He, Jack Williams, Nghia Pham
 

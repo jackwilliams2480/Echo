@@ -1,4 +1,4 @@
-![Echo logo](/assets/images/echo_logo_color.png)
+<img src="/assets/images/echo_logo_color.png" alt="Echo logo" width="400"/>
 Kubernetes Semester Group Project
 Groupmates: Linhao He, Jack Williams, Nghia Pham
 

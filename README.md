@@ -1,4 +1,4 @@
-<a href="#"><img src="/assets/images/echo_logo_color.png" alt="Echo logo" width="400"/></a>
+<a href="#"><img src="/src/assets/images/echo_logo_color.png" alt="Echo logo" width="400"/></a>
 
 ## Kubernetes CS520 Semester Group Project
 Groupmates: Linhao He, Jack Williams, Nghia Pham

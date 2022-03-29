@@ -63,3 +63,16 @@ body {
 .dropdown-menu-right{
     right: 0px;
 }
+
+.rectangle {
+    border:1px solid black; 
+    border-radius: 5%;
+}
+
+.space-sm {
+    margin-right: 30px;
+}
+
+.space-md {
+    margin-right: 90px;
+}

@@ -76,3 +76,7 @@ body {
 .space-md {
     margin-right: 90px;
 }
+
+.carousel .img-responsive {
+    width:100%;
+  }

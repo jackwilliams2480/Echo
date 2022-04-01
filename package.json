@@ -1,0 +1,24 @@
+{
+  "name": "echo",
+  "version": "1.0.0",
+  "description": "Design and implement a web app music player along with its own dedicated database.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackwilliams2480/Echo.git"
+  },
+  "author": "Linhao He, Jack Williams, Nghia Pham",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jackwilliams2480/Echo/issues"
+  },
+  "homepage": "https://github.com/jackwilliams2480/Echo#readme",
+  "dependencies": {
+    "@material-ui/core": "^4.12.3",
+    "react": "^18.0.0",
+    "react-router": "^6.3.0"
+  }
+}

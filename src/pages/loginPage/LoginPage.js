@@ -10,7 +10,9 @@ function LoginPage(){
         event.preventDefault();
         setSignUpClick(state => !state);
     }
-    return (<div className={`container ${signUpClick? "right-panel-active":""}`} id="container">
+    return (
+        <div className="LoginContainer">
+    <div className={`container ${signUpClick? "right-panel-active":""}`} id="container">
 
 	<div className="form-container sign-up-container">
 		<form>
@@ -24,18 +26,18 @@ function LoginPage(){
     
 	<div className="form-container sign-in-container">
 		<form>
-			<img src={darkLogo} className="leftIconTop" />
+			<img src={darkLogo} className="leftIconTop" alt="EchoDarkLogo"/>
 
 			<h1>Sign in</h1>
 			<input type="email" placeholder="Email" />
 			<input type="password" placeholder="Password" />
-			<a href="#">Forgot your password?</a>
+			<a href="./">Forgot your password?</a>
 			<button>Sign In</button>
 		</form>
 	</div>
 	<div className="overlay-container">
 		<div className="overlay">
-            <img src={Logo} className="leftIcon" />
+            <img src={Logo} className="leftIcon" alt="EchoLogo"/>
 
 			<div className="overlay-panel overlay-left">
 				<h1>Welcome Back!</h1>
@@ -49,6 +51,7 @@ function LoginPage(){
 			</div>
 		</div>
 	</div>
+</div>
 </div>)
 }
 

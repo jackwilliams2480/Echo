@@ -1,7 +1,7 @@
 import { Grid,Typography } from "@mui/material";
 import React from "react";
-import BrowseMenue from "./sideBarChildren/BrowseMenue";
-import PlayListMenue from "./sideBarChildren/PlayListMenue";
+import BrowseMenue from "./BrowseMenue";
+import PlayListMenue from "./PlayListMenue";
 
 
 function SideBar(){

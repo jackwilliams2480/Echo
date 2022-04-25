@@ -1,6 +1,7 @@
-import {Grid, ThemeProvider, createTheme, Typography } from "@mui/material";
+import {Grid, ThemeProvider, createTheme } from "@mui/material";
 import React from "react";
-import SideBar from "./SideBar";
+import NavBar from "../../component/NavBar";
+import SideBar from "../../component/SideBar";
 
 const theme = createTheme({
     typography:{
@@ -17,8 +18,8 @@ function MainPage(){
             <Grid item sx={{backgroundColor:"#E8ECEF", minWidth:160}}>
                 <SideBar />
             </Grid>
-            <Grid item>
-            
+            <Grid item sx={{backgroundColor:"#F5F7F7"}} xs>
+                <NavBar/>
             </Grid>
         </Grid>
         </ThemeProvider>);

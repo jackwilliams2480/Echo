@@ -36,7 +36,8 @@ Client-Server / N-tier architecture, built with Open Closed principle in mind.
 * Once Docker has completed its build and setup, you should see something along the lines of 
 ![Complete Build Image](/client/src/assets/CompleteBuild.PNG)
 * As you can see, we can now access the Echo webapp from http://localhost:3000
-  * As a side note, you can also view the database from http://localhost:8000
+	* Note: to access the main page without login navigate to http://localhost:3000/home
+  	* Note: to access the database overview navigate to http://localhost:8000
 
 ## Stopping:
 * While still in the same Echo directory, run ``docker-compose down``

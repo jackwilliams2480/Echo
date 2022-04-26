@@ -2,10 +2,10 @@
 FROM node:alpine
 
 # set working directory
-WORKDIR /echo
+WORKDIR /client
 
 # add `/echo/node_modules/.bin` to $PATH
-ENV PATH /echo/node_modules/.bin:$PATH
+ENV PATH /client/node_modules/.bin:$PATH
 
 # install app dependencies
 COPY package.json ./

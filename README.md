@@ -34,7 +34,9 @@ Client-Server / N-tier architecture, built with Open Closed principle in mind.
 * From here run ``docker-compose up -d``
 	* ``-d`` allows for us to detach the docker process in order to more easily troubleshoot errors
 * Once Docker has completed its build and setup, you should see something along the lines of 
-* [image]
+![Complete Build Image](/client/src/assets/CompleteBuild.PNG)
+* As you can see, we can now access the Echo webapp from http://localhost:3000
+  * As a side note, you can also view the database from http://localhost:8000
 
 ## Stopping:
 * While still in the same Echo directory, run ``docker-compose down``

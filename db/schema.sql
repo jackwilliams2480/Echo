@@ -1,12 +1,12 @@
 CREATE TABLE users (
-  id int PRIMARY KEY AUTO_INCREMENT,
+  id SERIAL PRIMARY KEY,
   username varchar,
   email varchar,
   password varchar
 );
 
 CREATE TABLE music (
-  id int PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   artist varchar,
   title varchar,
   genre varchar,
@@ -19,15 +19,14 @@ CREATE TABLE playlists (
 );
 
 CREATE TABLE playlist  (
-  userid int PRIMARY KEY,
-  playlistTitle varchar PRIMARY KEY,
-  musicid int
+  userid int,
+  playlistTitle varchar,
+  musicid int,
+  PRIMARY KEY(userid, playlistTitle)
 );
 
 ALTER TABLE playlists ADD FOREIGN KEY (userid) REFERENCES users (id) ON DELETE CASCADE;
 
 ALTER TABLE playlist ADD FOREIGN KEY (musicid) REFERENCES music (id);
-
-ALTER TABLE playlist ADD FOREIGN KEY (playlistTitle) REFERENCES playlists (playlistTitle);
 
 ALTER TABLE playlist ADD FOREIGN KEY (userid) REFERENCES users (id) ON DELETE CASCADE;

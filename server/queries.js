@@ -1,11 +1,20 @@
 const Pool = require('pg').Pool
 const pool = new Pool({
-  user: 'username',
+  user: 'postgres',
   host: 'localhost',
-  database: 'echo_music_database',
+  database: 'postgres',
   password: 'password',
   port: 5432,
 })
+
+const test = (request, response) => {
+  pool.query('SELECT * FROM pg_catalog.pg_tables', (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
 
 const getUsers = (request, response) => {
   pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
@@ -65,6 +74,15 @@ const deleteUser = (request, response) => {
   })
 }
 
+const getMusic = (request, response) => {
+  pool.query('SELECT * FROM music', (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
 const getMusicByTitle = (request, response) => {
   const title = parseInt(request.params.title)
 
@@ -77,7 +95,7 @@ const getMusicByTitle = (request, response) => {
 }
 
 const getMusicByArtist = (request, response) => {
-  const artist = parseInt(request.params.artist)
+  const artist = request.params.artist
 
   pool.query('SELECT * FROM music WHERE artist = $1 ', [artist], (error, results) => {
     if (error) {
@@ -127,11 +145,13 @@ const addSongToPlaylist = (request, response) => {
 }
 
 module.exports = {
+  test,
   getUsers,
   getUserById,
   createUser,
   updateUser,
   deleteUser,
+  getMusic,
   getMusicByTitle,
   getMusicByArtist,
   getPlaylistsbyUser,

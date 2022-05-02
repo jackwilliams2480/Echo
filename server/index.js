@@ -122,7 +122,7 @@ app.get('/music', db.getMusic)
  *     parameters:
  *       - in: path
  *         name: title
- *         type: string
+ *         type: string 
  *         required: true
  *         description: title of song
  *     responses:

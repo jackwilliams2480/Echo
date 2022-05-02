@@ -34,9 +34,8 @@ Client-Server / N-tier architecture, built with Open Closed principle in mind.
 * From here run ``docker-compose up --build -d``
 	* ``--build`` creates containers if they do not already exist
 	* ``-d`` allows for us to detach the docker process in order to more easily troubleshoot errors
-* Once Docker has completed its build and setup, you should see something along the lines of 
-![Complete Build Image](/client/src/assets/CompleteBuild.PNG)
-* As you can see, we can now access the Echo webapp from http://localhost:3000
+* Once Docker has completed its build and setup, you now have access to the complete build of the project
+* We can now access the Echo webapp from http://localhost:3000
 	* Note: to access the main page without login navigate to http://localhost:3000/home
 * To get an overview of the api, navigate to http://localhost:8000/api-docs
 

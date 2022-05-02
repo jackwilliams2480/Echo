@@ -7,15 +7,6 @@ const pool = new Pool({
   port: 5432,
 })
 
-const test = (request, response) => {
-  pool.query('SELECT * FROM pg_catalog.pg_tables', (error, results) => {
-    if (error) {
-      throw error
-    }
-    response.status(200).json(results.rows)
-  })
-}
-
 const getUsers = (request, response) => {
   pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
     if (error) {
@@ -37,13 +28,15 @@ const getUserById = (request, response) => {
 }
 
 const createUser = (request, response) => {
-  const { username, email, password } = request.body
+  const username = request.params.username;
+  const email = request.params.email;
+  const password = request.params.password;
 
   pool.query('INSERT INTO users (username, email, password) VALUES ($1, $2, $3)', [username, email, password], (error, results) => {
     if (error) {
       throw error
     }
-    response.status(201).send(`User added with ID: ${result.insertId}`)
+    response.status(201).send(`User added with username: ${username}`)
   })
 }
 
@@ -84,24 +77,24 @@ const getMusic = (request, response) => {
 }
 
 const getMusicByTitle = (request, response) => {
-  const title = parseInt(request.params.title)
+  const title = request.params.title;
 
-  pool.query('SELECT * FROM music WHERE id = $1 ', [title], (error, results) => {
+  pool.query('SELECT * FROM music WHERE title = $1 ', [title], (error, results) => {
     if (error) {
       throw error
     }
-    response.status(200).send(`Music found by the title: ${title}`)
+    response.status(200).send(results.rows)
   })
 }
 
 const getMusicByArtist = (request, response) => {
-  const artist = request.params.artist
+  const artist = request.params.artist;
 
   pool.query('SELECT * FROM music WHERE artist = $1 ', [artist], (error, results) => {
     if (error) {
       throw error
     }
-    response.status(200).send(`Music found by the requested artist: ${artist}`)
+    response.status(200).send(results.rows)
   })
 }
 
@@ -145,7 +138,6 @@ const addSongToPlaylist = (request, response) => {
 }
 
 module.exports = {
-  test,
   getUsers,
   getUserById,
   createUser,

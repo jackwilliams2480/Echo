@@ -36,7 +36,9 @@ app.use(
  *      '200':
  *        description: A successful response
  */
+
 app.get('/users', db.getUsers)
+
 /**
  * @swagger
  *  /users/{id}:
@@ -52,13 +54,53 @@ app.get('/users', db.getUsers)
  *       '200':
  *         description: A successful response
  */
-app.get('/users/:id', db.getUserById)
+app.get('/users/getUserById/:id', db.getUserById)
 
-app.post('/createUser/:username/:email/:password', db.createUser)
+/**
+ * @swagger
+ *  /users/createUser/{username}/{email}/{password}:
+ *   post:
+ *     summary: Creates a new user
+ *     parameters:
+ *       - in: path
+ *         name: username
+ *         type: string
+ *         required: true
+ *         description: Enter username
+ *       - in: path
+ *         name: email
+ *         type: string
+ *         required: true
+ *         description: Enter user email
+ *       - in: path
+ *         name: password
+ *         type: string
+ *         required: true
+ *         description: Enter user password
+ *     responses:
+ *       '201':
+ *         description: A successful response
+ */
+app.post('/users/createUser/:username/:email/:password', db.createUser)
 
-app.put('/updateUser/:username/:email/:password', db.updateUser)
+app.put('/users/updateUser/:username/:email/:password', db.updateUser)
 
-app.delete('/deleteUser/:id', db.deleteUser)
+/**
+ * @swagger
+ *  /users/deleteUser/{id}:
+ *   delete:
+ *     summary: Deletes a user by user id
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         type: int
+ *         required: true
+ *         description: Enter user id
+ *     responses:
+ *       '200': 
+ *         description: A successful response
+ */
+app.delete('/users/deleteUser/:id', db.deleteUser)
 
 // Routes
 /**
@@ -72,10 +114,9 @@ app.delete('/deleteUser/:id', db.deleteUser)
  */
 app.get('/music', db.getMusic)
 
-app.get('/users', db.getUsers)
 /**
  * @swagger
- *  /music/{title}:
+ *  /music/getMusicByTitle/{title}:
  *   get:
  *     summary: Gets music by title
  *     parameters:
@@ -88,11 +129,11 @@ app.get('/users', db.getUsers)
  *       '200':
  *         description: A successful response
  */
-app.get('/music/:title', db.getMusicByTitle)
+app.get('/music/getMusicByTitle/:title', db.getMusicByTitle)
 
 /**
  * @swagger
- *  /music/{artist}:
+ *  /music/getMusicByArtist/{artist}:
  *   get:
  *     summary: Gets music by artist
  *     parameters:
@@ -105,7 +146,7 @@ app.get('/music/:title', db.getMusicByTitle)
  *       '200':
  *         description: A successful response
  */
-app.get('/music/:artist', db.getMusicByArtist)
+app.get('/music/getMusicByArtist/:artist', db.getMusicByArtist)
 
 app.get('/playlists/:id', db.getPlaylistsbyUser)
 

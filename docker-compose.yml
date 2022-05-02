@@ -1,21 +1,36 @@
 services:
-  server:
-    container_name: server_db_container
-    image: 'postgres:latest'
-    environment:
-      POSTGRES_USER: username # The PostgreSQL user (useful to connect to the database)
-      POSTGRES_PASSWORD: password # The PostgreSQL password (useful to connect to the database)
-      POSTGRES_DB: echo_music_database # The PostgreSQL default database (automatically created at first launch)
-    ports:
-      - 8000:8000
-    volumes:
-          # copy the sql script to create tables
-          - ./db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
-          # copy the sql script to fill tables
-          - ./db/populate.sql:/docker-entrypoint-initdb.d/populate.sql
   client:
     build: ./client
     container_name: client_container
     ports:
       - 3000:3000
-    command: npm start
+
+  db:
+    container_name: db_container
+    image: 'postgres:latest'
+    environment:
+      POSTGRES_USER: postgres # The PostgreSQL user (useful to connect to the database)
+      POSTGRES_PASSWORD: password # The PostgreSQL password (useful to connect to the database)
+      POSTGRES_DB: postgres # The PostgreSQL default database (automatically created at first launch)
+    ports:
+      - 5432:5432
+    volumes:
+          # copy the sql script to create tables
+          - ./db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+          # copy the sql script to fill tables
+          - ./db/populate.sql:/docker-entrypoint-initdb.d/populate.sql
+    deploy:
+      restart_policy:
+        condition: on-failure
+          
+  server:
+    depends_on:
+      - db
+    build: ./server
+    container_name: api_container
+    ports:
+      - 8000:8000
+    deploy:
+      restart_policy:
+        condition: on-failure
+  

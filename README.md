@@ -31,7 +31,8 @@ Client-Server / N-tier architecture, built with Open Closed principle in mind.
 
 ## Building & Running:
 * Open up a terminal on your computer, and navigate to the Echo project directory 
-* From here run ``docker-compose up -d``
+* From here run ``docker-compose up --build -d``
+	* ``--build`` creates containers if they do not already exist
 	* ``-d`` allows for us to detach the docker process in order to more easily troubleshoot errors
 * Once Docker has completed its build and setup, you should see something along the lines of 
 ![Complete Build Image](/client/src/assets/CompleteBuild.PNG)

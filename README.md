@@ -30,6 +30,7 @@ Client-Server / N-tier architecture, built with Open Closed principle in mind.
 * [Install Docker](https://docs.docker.com/get-docker/) on your machine
 
 ## Building & Running:
+* Note: If you have a prevous build, run ``docker system prune -a`` to remove it. Beware that this removes all docker containers that exist on your computer, not only echo.
 * Open up a terminal on your computer, and navigate to the Echo project directory 
 * From here run ``docker-compose up --build -d``
 	* ``--build`` creates containers if they do not already exist

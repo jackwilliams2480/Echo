@@ -1,9 +1,8 @@
 import React from "react";
 import { Grid, Card, CardMedia } from "@mui/material";
-import artistimg from "../../assets/artist_spotlight/easonchan.jpg"
 import { Typography } from "@mui/material";
 
-function playlistInfomation(){
+function playlistInfomation({cover,name}){
     return <Grid
         container
         direction="row"
@@ -15,7 +14,7 @@ function playlistInfomation(){
                 <CardMedia 
                     component="img"
                     height = "160"
-                    image={artistimg}
+                    image={cover}
                     alt= "easonChan"
                 />
             </Card>
@@ -34,7 +33,7 @@ function playlistInfomation(){
                 </Grid>
                 <Grid item>
                     <Typography variant="h4">
-                        Eason Chan
+                        {name}
                     </Typography>
                 </Grid>
             </Grid>

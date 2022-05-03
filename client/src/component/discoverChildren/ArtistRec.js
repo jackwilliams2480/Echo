@@ -2,6 +2,12 @@ import React from "react";
 import { Typography } from "@mui/material";
 import { Card, CardActionArea, CardMedia } from "@mui/material";
 import artistimg from "../../assets/artist_spotlight/dojacat.jpg"
+import artistimg1 from "../../assets/artist_spotlight/easonchan.jpg"
+import artistimg2 from "../../assets/artist_spotlight/Beabadoobee.jpg"
+import artistimg3 from "../../assets/artist_spotlight/jaychou.webp"
+import artistimg4 from "../../assets/artist_spotlight/Weeknd.webp"
+import artistimg5 from "../../assets/artist_spotlight/girls.jpg"
+
 import { CardContent } from "@mui/material";
 import { Grid } from "@mui/material";
 function ArtistRec(){
@@ -40,12 +46,12 @@ function ArtistRec(){
                             <CardMedia
                                 component="img"
                                 height = "80"
-                                image={artistimg}
+                                image={artistimg1}
                                 alt= "dojacat"
                                 />
                         <CardContent>
                             <Typography textAlign="center">
-                                DoJacat
+                                Eason Chan
                             </Typography>
                         </CardContent>
                         </CardActionArea>
@@ -57,12 +63,12 @@ function ArtistRec(){
                             <CardMedia
                                 component="img"
                                 height = "80"
-                                image={artistimg}
+                                image={artistimg2}
                                 alt= "dojacat"
                                 />
                         <CardContent>
                             <Typography textAlign="center">
-                                DoJacat
+                                Beabadoobee
                             </Typography>
                         </CardContent>
                         </CardActionArea>
@@ -74,12 +80,12 @@ function ArtistRec(){
                             <CardMedia
                                 component="img"
                                 height = "80"
-                                image={artistimg}
+                                image={artistimg5}
                                 alt= "dojacat"
                                 />
                         <CardContent>
                             <Typography textAlign="center">
-                                DoJacat
+                            Girls Generation
                             </Typography>
                         </CardContent>
                         </CardActionArea>
@@ -92,12 +98,12 @@ function ArtistRec(){
                             <CardMedia
                                 component="img"
                                 height = "80"
-                                image={artistimg}
+                                image={artistimg3}
                                 alt= "dojacat"
                                 />
                         <CardContent>
                             <Typography textAlign="center">
-                                DoJacat
+                                Jay Chou
                             </Typography>
                         </CardContent>
                         </CardActionArea>
@@ -109,12 +115,12 @@ function ArtistRec(){
                             <CardMedia
                                 component="img"
                                 height = "80"
-                                image={artistimg}
+                                image={artistimg4}
                                 alt= "dojacat"
                                 />
                         <CardContent>
                             <Typography textAlign="center">
-                                DoJacat
+                                The Weeknd
                             </Typography>
                         </CardContent>
                         </CardActionArea>

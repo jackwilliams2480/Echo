@@ -7,6 +7,8 @@ import Discover from "../../component/Discover";
 import Trending from "../../component/Trending";
 import Playlist from "../../component/Playlist";
 import MusicPlayer from "../../component/MusicPlayer";
+import music from "../../assets/music/ALREADY.mp3";
+import eason from "../../assets/artist_spotlight/easonchan.jpg";
 const theme = createTheme({
     typography:{
         "fontFamily":`"Quicksand","sans-serif"`,
@@ -26,13 +28,13 @@ function MainPage(){
         return { name , nofPlay ,time};
       }
       
-      const rows = [
+      const rows = {alblumName:"Eason Chan", data:[
         createData('Frozen yoghurt', 20, "2:46"),
         createData('Ice cream sandwich' , 3123, "3:46"),
         createData('Eclair' , 323, "1:43"),
         createData('Cupcake' , 421, "5:32"),
         createData('Gingerbread', 2421, "2:56"),
-      ];
+      ] , alblumCover:eason};
 
     const dynamicRender = () =>{
         if(buttonClicked.catagory === "browse"){
@@ -58,7 +60,7 @@ function MainPage(){
             justifyContent="space-between"
             alignItems="stretch"
             >
-            <Grid Item>
+            <Grid item>
             <Grid container direction="row" alignItems="stretch" rowSpacing={0}>
                 <Grid item sx={{backgroundColor:"#E8ECEF", minWidth:160}}>
                     <SideBar handleClick={handleClick}/>
@@ -75,8 +77,8 @@ function MainPage(){
                 </Grid> 
             </Grid>
             </Grid>
-            <Grid Item>
-                <MusicPlayer url={"https://storage.googleapis.com/media-session/elephants-dream/the-wires.mp3"} />
+            <Grid item>
+                <MusicPlayer url={music} />
             </Grid>
         </Grid>
         </ThemeProvider>

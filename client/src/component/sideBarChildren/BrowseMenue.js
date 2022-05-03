@@ -28,7 +28,7 @@ function BrowseMenue({handleClick}){
                         Trending
                     </ListItemText>
                 </MenuItem>
-                <MenuItem onClick={() => handleClick("songs","browse")}>
+                {/* <MenuItem onClick={() => handleClick("songs","browse")}>
                     <ListItemIcon>
                         <LibraryMusicIcon fontSize="small"/>
                     </ListItemIcon>
@@ -43,7 +43,7 @@ function BrowseMenue({handleClick}){
                     <ListItemText>
                         Artist
                     </ListItemText>
-                </MenuItem>
+                </MenuItem> */}
             </MenuList>
     </Paper>;
 }

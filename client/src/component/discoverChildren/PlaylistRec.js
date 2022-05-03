@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography } from "@mui/material";
 import { Card, CardActionArea, CardMedia } from "@mui/material";
-import artistimg from "../../assets/artist_spotlight/dojacat.jpg"
+import artistimg from "../../assets/artist_spotlight/placeholder.png"
 import { CardContent } from "@mui/material";
 import { Grid } from "@mui/material";
 function PlaylistRec() {

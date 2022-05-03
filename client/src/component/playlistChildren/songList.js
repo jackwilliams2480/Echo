@@ -1,7 +1,7 @@
 import React from "react";
 import { Table, TableHead, TableCell ,TableBody, TableContainer, TableRow} from "@mui/material";
 function songList({data}){
-    return <TableContainer component={Table} >
+    return <TableContainer >
     <Table sx={{borderLeft:0}}>
         <TableHead>
             <TableRow>
@@ -21,7 +21,7 @@ function songList({data}){
         </TableHead>
         <TableBody>
             {data.map((row,index) => (
-                <TableRow  key={row.name}>
+                <TableRow  key={row.name} >
                     <TableCell>
                         {index}
                     </TableCell>

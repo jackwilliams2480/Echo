@@ -25,7 +25,7 @@ function LoginPage(){
 	</div>
     
 	<div className="form-container sign-in-container">
-		<form>
+		<form action="/home">
 			<img src={darkLogo} className="leftIconTop" alt="EchoDarkLogo"/>
 
 			<h1>Sign in</h1>

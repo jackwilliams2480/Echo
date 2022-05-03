@@ -13,10 +13,10 @@ function Playlist({data}){
                 
             >
                 <Grid item xs={2} sx={{"width":"100%",p:2}}>
-                    <PlaylistInfomation />
+                    <PlaylistInfomation cover={data.alblumCover} name = {data.alblumName}/>
                 </Grid>
                 <Grid item xs={10} sx={{"width":"100%"}}>
-                    <SongList data={data}/>
+                    <SongList data={data.data}/>
                 </Grid>
              </Grid>
 }

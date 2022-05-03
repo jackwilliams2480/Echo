@@ -3,7 +3,6 @@ server/
 
 # dependencies
 /node_modules
-/audio_files
 /.pnp
 .pnp.js
 

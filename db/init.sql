@@ -16,7 +16,8 @@ CREATE TABLE music (
 );
 
 CREATE TABLE playlists (
-  userid int PRIMARY KEY,
+  playlistid SERIAL PRIMARY KEY,
+  userid int,
   playlistTitle varchar
 );
 

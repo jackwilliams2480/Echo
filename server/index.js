@@ -36,7 +36,6 @@ app.use(
  *      '200':
  *        description: A successful response
  */
-
 app.get('/users', db.getUsers)
 
 /**
@@ -54,11 +53,11 @@ app.get('/users', db.getUsers)
  *       '200':
  *         description: A successful response
  */
-app.get('/users/getUserById/:id', db.getUserById)
+app.get('/users/:id', db.getUserById)
 
 /**
  * @swagger
- *  /users/createUser/{username}/{email}/{password}:
+ *  /users/{username}/{email}/{password}:
  *   post:
  *     summary: Creates a new user
  *     parameters:
@@ -81,9 +80,35 @@ app.get('/users/getUserById/:id', db.getUserById)
  *       '201':
  *         description: A successful response
  */
-app.post('/users/createUser/:username/:email/:password', db.createUser)
+app.post('/users/:username/:email/:password', db.createUser)
 
-app.put('/users/updateUser/:username/:email/:password', db.updateUser)
+/**
+ * @swagger
+ *  /users/{id}/{username}/{email}/{password}:
+ *   put:
+ *     summary: updates a existing user
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         type: int
+ *         description: Enter id
+ *       - in: path
+ *         name: username
+ *         type: string
+ *         description: Enter username
+ *       - in: path
+ *         name: email
+ *         type: string
+ *         description: Enter user email
+ *       - in: path
+ *         name: password
+ *         type: string
+ *         description: Enter user password
+ *     responses:
+ *       '200':
+ *         description: A successful response
+ */
+app.put('/users/:id/:username/:email/:password', db.updateUser)
 
 /**
  * @swagger
@@ -94,7 +119,6 @@ app.put('/users/updateUser/:username/:email/:password', db.updateUser)
  *       - in: path
  *         name: id
  *         type: int
- *         required: true
  *         description: Enter user id
  *     responses:
  *       '200': 
@@ -102,7 +126,6 @@ app.put('/users/updateUser/:username/:email/:password', db.updateUser)
  */
 app.delete('/users/deleteUser/:id', db.deleteUser)
 
-// Routes
 /**
  * @swagger
  * /music:
@@ -113,6 +136,23 @@ app.delete('/users/deleteUser/:id', db.deleteUser)
  *        description: A successful response
  */
 app.get('/music', db.getMusic)
+
+/**
+ * @swagger
+ *  /music/getMusicByGenre/{genre}:
+ *   get:
+ *     summary: Gets music by genre
+ *     parameters:
+ *       - in: path
+ *         name: title
+ *         type: string 
+ *         required: true
+ *         description: genre of song
+ *     responses:
+ *       '200':
+ *         description: A successful response
+ */
+app.get('/music/getMusicByGenre/:genre', db.getMusicByGenre)
 
 /**
  * @swagger
@@ -148,9 +188,116 @@ app.get('/music/getMusicByTitle/:title', db.getMusicByTitle)
  */
 app.get('/music/getMusicByArtist/:artist', db.getMusicByArtist)
 
-app.get('/playlists/:id', db.getPlaylistsbyUser)
+/**
+ * @swagger
+ *  /playlists:
+ *   get:
+ *     description: Get all playlists
+ *     responses:
+ *       '200':
+ *         description: A successful response
+ */
+app.get('/playlists', db.getPlaylists)
 
-app.get('/playlists/:id/:playlistTitle', db.getPlaylistsbyUser)
+/**
+ * @swagger
+ *  /playlists/{id}:
+ *   get:
+ *     summary: Gets a list of playlists created by given user
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         type: integer
+ *         description: Numeric ID of the user to get.
+ *     responses:
+ *       '200':
+ *         description: A successful response
+ */
+app.get('/playlists/getPlaylistById/:id', db.getPlaylistsbyUser)
+
+/**
+ * @swagger
+ *  /playlists/byTitle/{title}:
+ *   get:
+ *     summary: Gets list of playlists under the title name
+ *     parameters:
+ *       - in: path
+ *         name: title
+ *         type: string
+ *         description: Title of playlist 
+ *     responses:
+ *       '200':
+ *         description: A successful response
+ */
+app.get('/playlists/byTitle/:title', db.getPlaylistsbyPlaylistTitle)
+
+/**
+ * @swagger
+ *  /playlists/remove/{id}/{playlistTitle}:
+ *   delete:
+ *     summary: Deletes a playlist by user id
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         type: int
+ *         description: Enter user id
+ *       - in: path
+ *         name: playlistTitle
+ *         type: string
+ *         description: Enter playlistTitle
+ *     responses:
+ *       '200': 
+ *         description: A successful response
+ */
+app.delete('/playlists/remove/:id/:playlistTitle', db.getPlaylistsbyUser)
+
+/**
+ * @swagger
+ *  /playlist/addSong/{id}/{playlistTitle}/{musicid}:
+ *   post:
+ *     summary: Creates a new user
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         type: int
+ *         description: Enter userid
+ *       - in: path
+ *         name: playlistTitle
+ *         type: string
+ *         description: Enter playlistTitle
+ *       - in: path
+ *         name: musicid
+ *         type: string
+ *         description: Enter musicid
+ *     responses:
+ *       '201':
+ *         description: A successful response
+ */
+app.post('/playlist/addSong/:id/:playlistTitle/:musicid', db.addSongToPlaylist)
+
+/**
+ * @swagger
+ *  /playlist/removeSong/{id}/{playlistTitle}/{musicid}:
+ *   delete:
+ *     summary: Creates a new user
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         type: int
+ *         description: Enter userid
+ *       - in: path
+ *         name: playlistTitle
+ *         type: string
+ *         description: Enter playlistTitle
+ *       - in: path
+ *         name: musicid
+ *         type: string
+ *         description: Enter musicid
+ *     responses:
+ *       '201':
+ *         description: A successful response
+ */
+app.post('/playlist/removeSong/:id/:playlistTitle/:musicid', db.removeSongFromPlaylist)
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)

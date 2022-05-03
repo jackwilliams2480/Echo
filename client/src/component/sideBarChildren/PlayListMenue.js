@@ -1,15 +1,15 @@
 import React from "react";
 import { Paper, MenuItem, MenuList, Typography } from "@mui/material";
 
-function PlayListMenue() {
+function PlayListMenue({handleClick}) {
 
     return <Paper sx={{ width: '100%', backgroundColor:"#E8ECEF"}} elevation={0}>
         <MenuList>
             <Typography sx={{ pl: 2, fontWeight:'bold' }}>
                 PLAYLIST
             </Typography>
-            <MenuItem>
-                <Typography >
+            <MenuItem onClick={() => handleClick("playlist1","playlist")}>
+                <Typography>
                     playlist 1
                 </Typography>
             </MenuItem>

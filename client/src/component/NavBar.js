@@ -1,8 +1,9 @@
-import { AppBar,Box,Toolbar,Button, Grid } from "@mui/material";
+import { AppBar,Box,Toolbar, Grid } from "@mui/material";
 
 
 import React from "react";
 import SearchBar from "./navBarChildren/searchBar";
+import ProfileAvatar from "./navBarChildren/profileAvatar";
 
 function NavBar(){
     return(  <Box sx={{ flexGrow: 1 }}>
@@ -13,7 +14,7 @@ function NavBar(){
                 <SearchBar />
             </Grid>
             <Grid item>
-                <Button color="primary">Login</Button>
+                <ProfileAvatar />
             </Grid>
             </Grid>
           </Toolbar>

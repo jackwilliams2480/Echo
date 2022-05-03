@@ -4,18 +4,17 @@ import BrowseMenue from "./sideBarChildren/BrowseMenue";
 import PlayListMenue from "./sideBarChildren/PlayListMenue";
 
 
-function SideBar(){
+function SideBar({handleClick}){
     return (
             <Grid container direction="column" justifyContent="flex-start" alignItems="stretch" sx={{height:"100vh"}}>
                 <Grid item xs={1} sx={{width:'100%'}}>
                     <Typography sx={{px:2, fontWeight:"bold", color:"#293241"}}>Echo</Typography>
-
                 </Grid>
                 <Grid item xs sx={{width:'100%'}}>
-                    <BrowseMenue />
+                    <BrowseMenue handleClick={handleClick}/>
                 </Grid>
                 <Grid item xs sx={{width:'100%'}}>
-                    <PlayListMenue />
+                    <PlayListMenue handleClick={handleClick}/>
                 </Grid>
                 
             </Grid>);

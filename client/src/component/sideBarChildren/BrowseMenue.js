@@ -5,14 +5,14 @@ import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 
-function BrowseMenue(){
+function BrowseMenue({handleClick}){
 
     return <Paper sx={{width:'100%', backgroundColor:"#E8ECEF"}} elevation={0}>
             <MenuList>
-                <Typography sx={{pl:2, fontWeight:'bold'}}>
+                <Typography sx={{pl:2, fontWeight:'bold'}} >
                      Browse
                 </Typography>
-                <MenuItem>
+                <MenuItem onClick={() => handleClick("discover","browse")}>
                     <ListItemIcon>
                         <SearchIcon fontSize="small"/>
                     </ListItemIcon>
@@ -20,7 +20,7 @@ function BrowseMenue(){
                         Discover
                     </ListItemText>
                 </MenuItem>
-                <MenuItem>
+                <MenuItem onClick={() => handleClick("trending","browse")}>
                     <ListItemIcon>
                         <TrendingUpIcon fontSize="small"/>
                     </ListItemIcon>
@@ -28,7 +28,7 @@ function BrowseMenue(){
                         Trending
                     </ListItemText>
                 </MenuItem>
-                <MenuItem>
+                <MenuItem onClick={() => handleClick("songs","browse")}>
                     <ListItemIcon>
                         <LibraryMusicIcon fontSize="small"/>
                     </ListItemIcon>
@@ -36,7 +36,7 @@ function BrowseMenue(){
                         Songs
                     </ListItemText>
                 </MenuItem>
-                <MenuItem>
+                <MenuItem onClick={() => handleClick("artist","browse")}>
                     <ListItemIcon>
                         <PersonOutlineIcon fontSize="small"/>
                     </ListItemIcon>

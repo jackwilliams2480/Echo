@@ -6,6 +6,7 @@ import SideBar from "../../component/SideBar";
 import Discover from "../../component/Discover";
 import Trending from "../../component/Trending";
 import Playlist from "../../component/Playlist";
+import MusicPlayer from "../../component/MusicPlayer";
 const theme = createTheme({
     typography:{
         "fontFamily":`"Quicksand","sans-serif"`,
@@ -51,22 +52,32 @@ function MainPage(){
 
     return(
         <ThemeProvider theme={theme}>
-
-        <Grid container direction="row" alignItems="stretch" rowSpacing={0}>
-             <Grid item sx={{backgroundColor:"#E8ECEF", minWidth:160}}>
-                <SideBar handleClick={handleClick}/>
-            </Grid> 
-             <Grid item sx={{backgroundColor:"#F5F7F7"}} xs>
-                <Grid container direction="column">
-                    <Grid item>
-                        <NavBar/>
+        <Grid
+            container
+            direction="column"
+            justifyContent="space-between"
+            alignItems="stretch"
+            >
+            <Grid Item>
+            <Grid container direction="row" alignItems="stretch" rowSpacing={0}>
+                <Grid item sx={{backgroundColor:"#E8ECEF", minWidth:160}}>
+                    <SideBar handleClick={handleClick}/>
+                </Grid> 
+                <Grid item sx={{backgroundColor:"#F5F7F7"}} xs>
+                    <Grid container direction="column" >
+                        <Grid item>
+                            <NavBar/>
+                        </Grid>
+                        <Grid item>
+                            {dynamicRender()}
+                        </Grid>
                     </Grid>
-                    <Grid item>
-                        {dynamicRender()}
-                    </Grid>
-                </Grid>
-
-            </Grid> 
+                </Grid> 
+            </Grid>
+            </Grid>
+            <Grid Item>
+                <MusicPlayer url={"https://storage.googleapis.com/media-session/elephants-dream/the-wires.mp3"} />
+            </Grid>
         </Grid>
         </ThemeProvider>
         );

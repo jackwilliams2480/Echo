@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# Echo CS520 Semester Group Project
+Groupmates: Linhao He, Jack Williams, Nghia Pham
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description:
+Our project goal is to design and implement a web app music player along with its own dedicated database. We want to have a secure login to the website, which will then take you to a homepage which you can navigate through recommended and popular songs. You can also go to your own playlists.
 
-## Available Scripts
+## Architecture:
+Client-Server / N-tier architecture, built with Open Closed principle in mind.
 
-In the project directory, you can run:
+## Logistics:
+- Version Control: Git
+- Scrum board: Github
+- Front-end: 
+  - Framework: built using React OOP class structure with props and data manipulation to represent our UI
+  - Language: JavaScript, HTML, CSS
+  - Library: Material UI, React Router, React Redux, Axioms
 
-### `npm start`
+## Back-end:
+- Framework: Express.js
+- Language: JavaScript, SQL
+- Library: Sequelize ORM
+- Database: SQL
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Guide to Docker & Echo:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installing:
+* [Install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) if you don't already have it installed
+* Clone the repository to your Desktop (or desired file directory)
+``git clone https://github.com/jackwilliams2480/Echo``
+* [Install Docker](https://docs.docker.com/get-docker/) on your machine
 
-### `npm test`
+## Building & Running:
+* Open up a terminal on your computer, and navigate to the Echo project directory 
+* From here run ``docker-compose up --build -d``
+	* ``--build`` creates containers if they do not already exist
+	* ``-d`` allows for us to detach the docker process in order to more easily troubleshoot errors
+* Once Docker has completed its build and setup, you now have access to the complete build of the project
+* We can now access the Echo webapp from http://localhost:3000
+	* Note: to access the main page without login navigate to http://localhost:3000/home
+* To get an overview of the api, navigate to http://localhost:8000/api-docs
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Stopping:
+* While still in the same Echo directory, run ``docker-compose down``
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Database:
+[Schema Diagram](https://dbdiagram.io/d/6267735095e7f23c617118c4)

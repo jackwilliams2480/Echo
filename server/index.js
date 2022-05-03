@@ -1,52 +1,157 @@
-const keys = require("./keys");
+const express = require('express')
+const bodyParser = require('body-parser')
+const swaggerUi = require('swagger-ui-express')
+const swaggerDocument = require('swagger-jsdoc')
+const app = express()
+const db = require('./queries')
+const port = 8000;
 
-// Express Application setup
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
+const swaggerOptions = {
+  swaggerDefinition: {
+    info: {
+      title: "Library API",
+      version: '1.0.0',
+    },
+  },
+  apis: ["index.js"],
+};
 
-const app = express();
-app.use(cors());
-app.use(bodyParser.json());
+const swaggerDocs = swaggerDocument(swaggerOptions);
 
-// Postgres client setup
-const { Pool } = require("pg");
-const pgClient = new Pool({
-  user: keys.pgUser,
-  host: keys.pgHost,
-  database: keys.pgDatabase,
-  password: keys.pgPassword,
-  port: keys.pgPort
-});
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use(bodyParser.json())
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+)
 
-pgClient.on("connect", client => {
-  client
-    .query("CREATE TABLE IF NOT EXISTS values (number INT)")
-    .catch(err => console.log("PG ERROR", err));
-});
+// Routes
+/**
+ * @swagger
+ * /users:
+ *  get:
+ *    description: Get all users
+ *    responses:
+ *      '200':
+ *        description: A successful response
+ */
 
-//Express route definitions
-app.get("/", (req, res) => {
-  res.send("Echo Relational Database Demo");
-});
+app.get('/users', db.getUsers)
 
-// get the values
-app.get("/values/all", async (req, res) => {
-  const values = await pgClient.query("SELECT * FROM values");
+/**
+ * @swagger
+ *  /users/{id}:
+ *   get:
+ *     summary: Gets a user by ID.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         type: integer
+ *         required: true
+ *         description: Numeric ID of the user to get.
+ *     responses:
+ *       '200':
+ *         description: A successful response
+ */
+app.get('/users/getUserById/:id', db.getUserById)
 
-  res.send(values);
-});
+/**
+ * @swagger
+ *  /users/createUser/{username}/{email}/{password}:
+ *   post:
+ *     summary: Creates a new user
+ *     parameters:
+ *       - in: path
+ *         name: username
+ *         type: string
+ *         required: true
+ *         description: Enter username
+ *       - in: path
+ *         name: email
+ *         type: string
+ *         required: true
+ *         description: Enter user email
+ *       - in: path
+ *         name: password
+ *         type: string
+ *         required: true
+ *         description: Enter user password
+ *     responses:
+ *       '201':
+ *         description: A successful response
+ */
+app.post('/users/createUser/:username/:email/:password', db.createUser)
 
-// now the post -> insert value
-app.post("/values", async (req, res) => {
-  if (!req.body.value) res.send({ working: false });
+app.put('/users/updateUser/:username/:email/:password', db.updateUser)
 
-  pgClient.query("INSERT INTO values(number) VALUES($1)", [req.body.value]);
+/**
+ * @swagger
+ *  /users/deleteUser/{id}:
+ *   delete:
+ *     summary: Deletes a user by user id
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         type: int
+ *         required: true
+ *         description: Enter user id
+ *     responses:
+ *       '200': 
+ *         description: A successful response
+ */
+app.delete('/users/deleteUser/:id', db.deleteUser)
 
-  res.send({ working: true });
-});
+// Routes
+/**
+ * @swagger
+ * /music:
+ *  get:
+ *    description: Get all music stored on db
+ *    responses:
+ *      '200':
+ *        description: A successful response
+ */
+app.get('/music', db.getMusic)
 
-app.listen(3000, err => {
-  console.log("Listening");
-});
+/**
+ * @swagger
+ *  /music/getMusicByTitle/{title}:
+ *   get:
+ *     summary: Gets music by title
+ *     parameters:
+ *       - in: path
+ *         name: title
+ *         type: string 
+ *         required: true
+ *         description: title of song
+ *     responses:
+ *       '200':
+ *         description: A successful response
+ */
+app.get('/music/getMusicByTitle/:title', db.getMusicByTitle)
 
+/**
+ * @swagger
+ *  /music/getMusicByArtist/{artist}:
+ *   get:
+ *     summary: Gets music by artist
+ *     parameters:
+ *       - in: path
+ *         name: artist
+ *         type: string
+ *         required: true
+ *         description: catalog of songs from artist
+ *     responses:
+ *       '200':
+ *         description: A successful response
+ */
+app.get('/music/getMusicByArtist/:artist', db.getMusicByArtist)
+
+app.get('/playlists/:id', db.getPlaylistsbyUser)
+
+app.get('/playlists/:id/:playlistTitle', db.getPlaylistsbyUser)
+
+app.listen(port, () => {
+  console.log(`App running on port ${port}.`)
+})

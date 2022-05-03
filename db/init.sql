@@ -34,10 +34,3 @@ CREATE TABLE recommendation (
   artist varchar,
   musicid int
 );
-
-ALTER TABLE playlists ADD FOREIGN KEY (userid) REFERENCES playlists (userid);
-
-ALTER TABLE playlist ADD FOREIGN KEY (userid) REFERENCES users (userid);
-
-ALTER TABLE recommendation ADD FOREIGN KEY (userid) REFERENCES users (userid);
-ALTER TABLE recommendation ADD FOREIGN KEY (musicid) REFERENCES music (musicid);

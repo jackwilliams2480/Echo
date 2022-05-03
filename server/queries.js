@@ -8,7 +8,7 @@ const pool = new Pool({
 })
 
 const getUsers = (request, response) => {
-  pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
+  pool.query('SELECT * FROM users ORDER BY userid ASC', (error, results) => {
     if (error) {
       throw error
     }
@@ -19,7 +19,7 @@ const getUsers = (request, response) => {
 const getUserById = (request, response) => {
   const id = parseInt(request.params.id)
 
-  pool.query('SELECT * FROM users WHERE id = $1', [id], (error, results) => {
+  pool.query('SELECT * FROM users WHERE userid = $1', [id], (error, results) => {
     if (error) {
       throw error
     }
@@ -42,10 +42,12 @@ const createUser = (request, response) => {
 
 const updateUser = (request, response) => {
   const id = parseInt(request.params.id)
-  const { username, email, password } = request.body
+  const username = request.params.username;
+  const email = request.params.email;
+  const password = request.params.password;
 
   pool.query(
-    'UPDATE users SET username = $1, email = $2, password = $3 WHERE id = $4',
+    'UPDATE users SET username = $1, email = $2, password = $3 WHERE userid = $4',
     [username, email, password, id],
     (error, results) => {
       if (error) {
@@ -59,7 +61,7 @@ const updateUser = (request, response) => {
 const deleteUser = (request, response) => {
   const id = parseInt(request.params.id)
 
-  pool.query('DELETE FROM users WHERE id = $1 ', [id], (error, results) => {
+  pool.query('DELETE FROM users WHERE userid = $1 ', [id], (error, results) => {
     if (error) {
       throw error
     }
@@ -98,41 +100,91 @@ const getMusicByArtist = (request, response) => {
   })
 }
 
+const getMusicByGenre = (request, response) => {
+  const genre = request.params.genre;
+
+  pool.query('SELECT * FROM music WHERE genre = $1 ', [genre], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).send(results.rows)
+  })
+}
+
+const getPlaylists = (request, response) => {
+  pool.query('SELECT * FROM playlists', (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
+const removePlaylist = (request, response) => {
+  const userid = parseInt(request.params.genre);
+  const playlistTitle = request.params.playlistTitle;
+  
+  pool.query('DELETE FROM playlists WHERE userid = $1 AND playlistTitle = $2 ', [userid, playlistTitle], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).send(`Deleted playlist: ${playlistTitle}`)
+  })
+}
+
 const getPlaylistsbyUser = (request, response) => {
-  const { id } = parseInt(request.params.id)
+  const id = parseInt(request.params.id)
 
   pool.query('SELECT * FROM playlists WHERE userid = $1', [id], (error, results) => {
     if (error) {
       throw error
     }
-    response.status(201).send(`Playlists from user: ${result.insertId}`)
+    response.status(201).send(result.rows)
   })
 }
 
 const getPlaylistsbyPlaylistTitle = (request, response) => {
   const id = parseInt(request.params.id)
-  const playlistTitle = parseInt(request.params.playlistTitle)
+  const playlistTitle = request.params.playlistTitle
 
   pool.query('SELECT * FROM playlist WHERE userid = $1 AND playlistTitle = $2', [id, playlistTitle], (error, results) => {
     if (error) {
       throw error
     }
-    response.status(201).send(`Playlist from user: ${result.insertId}`)
+    response.status(201).send(result.rows)
   })
 }
 
 const addSongToPlaylist = (request, response) => {
   const id = parseInt(request.params.id)
-  const { userid, playlistTitle, musicid } = request.body
+  const playlistTitle = request.params.playlistTitle;
+  const musicid = request.params.musicid;
 
   pool.query(
-    'UPDATE users SET username = $1, email = $2, password = $3 WHERE id = $4',
-    [username, email, password, id],
+    'INSERT INTO playlist VALUES ($1, $2, $3)',
+    [id, playlistTitle, musicid],
     (error, results) => {
       if (error) {
         throw error
       }
-      response.status(200).send(`User modified with ID: ${id}`)
+      response.status(200).send(`Added song: ${musicid} to playlist: ${playlistTitle}`)
+    }
+  )
+}
+
+const removeSongFromPlaylist = (request, response) => {
+  const id = parseInt(request.params.id)
+  const playlistTitle = request.params.playlistTitle;
+  const musicid = request.params.musicid;
+
+  pool.query(
+    'DELETE FROM playlist WHERE userid = $1 AND playlistTitle = $2 AND musicid = $3',
+    [id, playlistTitle, musicid],
+    (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).send(`Removed ${musicid} from playlist`)
     }
   )
 }
@@ -144,8 +196,13 @@ module.exports = {
   updateUser,
   deleteUser,
   getMusic,
+  getMusicByGenre,
   getMusicByTitle,
   getMusicByArtist,
+  getPlaylists,
   getPlaylistsbyUser,
-  getPlaylistsbyPlaylistTitle
+  removePlaylist,
+  getPlaylistsbyPlaylistTitle,
+  addSongToPlaylist,
+  removeSongFromPlaylist
 }

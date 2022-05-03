@@ -15,11 +15,7 @@ const Player = ({ url }) => {
     const toggle = () => setPlaying(!playing);
 
     useEffect(() => {
-        if(playing){
-            audio.play();
-        }else{
-            audio.pause();
-        }
+        playing?audio.play() : audio.pause();
       },
       [playing]
     );

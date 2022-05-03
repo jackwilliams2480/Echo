@@ -1,9 +1,9 @@
 import React from "react";
 import {Paper, MenuItem, MenuList, ListItemIcon, Typography, ListItemText} from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
-import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
+// import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+// import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 
 function BrowseMenue({handleClick}){
 

@@ -26,6 +26,10 @@ app.use(
   })
 )
 
+app.get('/', (req, res) => {
+  res.send('main page')
+})
+
 // Routes
 /**
  * @swagger

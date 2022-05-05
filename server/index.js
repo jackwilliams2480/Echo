@@ -1,9 +1,9 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const swaggerUi = require('swagger-ui-express')
-const swaggerDocument = require('swagger-jsdoc')
-const app = express()
-const db = require('./queries')
+const express = require('express');
+const bodyParser = require('body-parser');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('swagger-jsdoc');
+const app = express();
+const db = require('./queries');
 const port = 8000;
 
 const swaggerOptions = {
@@ -27,8 +27,8 @@ app.use(
 )
 
 app.get('/', (req, res) => {
-  res.send('main page')
-})
+  res.status(200).json('main page');
+});
 
 // Routes
 /**
@@ -306,3 +306,5 @@ app.post('/playlist/removeSong/:id/:playlistTitle/:musicid', db.removeSongFromPl
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })
+
+module.exports = app;

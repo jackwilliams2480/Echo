@@ -1,11 +1,11 @@
-const Pool = require('pg').Pool
+const Pool = require('pg').Pool;
 const pool = new Pool({
   user: 'postgres',
   host: 'postgres',
   database: 'postgres',
   password: 'password',
   port: 5432,
-})
+});
 
 const getUsers = (request, response) => {
   pool.query('SELECT * FROM users ORDER BY userid ASC', (error, results) => {
@@ -14,7 +14,7 @@ const getUsers = (request, response) => {
     }
     response.status(200).json(results.rows)
   })
-}
+};
 
 const getUserById = (request, response) => {
   const id = parseInt(request.params.id)

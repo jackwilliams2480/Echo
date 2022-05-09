@@ -58,16 +58,31 @@ describe('/Users ', () => {
     });
   });
 
-  // test('PUT edit user', async () => {
-  //   const editUser = {
-  //     id: '1',
-  //     username: 'JohnDoe',
-  //     password: '123',
-  //     email: 'johndoe@xyz',
-  //   };
-  //   const res = await request(app)
-  //   .put('/users')
-  //   .send(newUser);
-  //   expect(res.statusCode).toBe(200);
-  // });
+  test('PUT edit user', async () => {
+    const editUser = {
+      id: '1',
+      username: 'JohnDoe',
+      password: '123',
+      email: 'johndoe@xyz',
+    };
+    const res = await request(app)
+    .put('/users?id=1&username=JohnDoe&password=123&email=johndoe@xyz')
+    // .send(newUser);
+    expect(res.statusCode).toBe(200);
+
+    res = await request(app).get('/users');
+    res.body.forEach(x => {
+      if (x.email === 'johndoe@xyz') {
+        expect(res.username).toMatch('JohnDoe');
+        expect(res.password).toMatch('123');
+      }
+    });
+  });
+
+  test('DELETE user', async () => {
+    const res = await request(app)
+    .delete('/users/deleteUser?id=1');
+
+    expect(res.statusCode).toBe(200);
+  });
 });

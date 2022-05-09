@@ -31,7 +31,7 @@ describe('/Users ', () => {
     expect(res.statusCode).toBe(200);
     const users = res.body;
     users.forEach(e => {
-      expect(e.id).toBe(1);
+      expect(e.userid).toBe(2);
       expect(e.email).toMatch('linhpham@xyz');
       expect(e.password).toMatch('123');
       expect(e.username).toMatch('LinhPham');
@@ -44,10 +44,10 @@ describe('/Users ', () => {
       password: '123',
       email: 'tiffany@xyz',
     };
-    const res = await request(app)
+    let res = await request(app)
     .post('/users/Tiffany/123/tiffany@xyz')
     // .send(newUser);
-    expect(res.statusCode).toBe(200);
+    expect(res.statusCode).toBe(201);
 
     res = await request(app).get('/users');
     res.body.forEach(x => {
@@ -65,7 +65,7 @@ describe('/Users ', () => {
       password: '123',
       email: 'johndoe@xyz',
     };
-    const res = await request(app)
+    let res = await request(app)
     .put('/users/1/JohnDoe/johndoe@xyz/123')
     // .send(newUser);
     expect(res.statusCode).toBe(200);

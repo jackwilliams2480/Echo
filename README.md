@@ -40,6 +40,10 @@ Client-Server / N-tier architecture, built with Open Closed principle in mind.
 	* Note: to access the main page without login navigate to http://localhost:3000/home
 * To get an overview of the api, navigate to http://localhost:8000/api-docs
 
+## Testing:
+* After Build, open echo_server CLI
+* From CLI, run ``npm test``
+
 ## Stopping:
 * While still in the same Echo directory, run ``docker-compose down``
 

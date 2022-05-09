@@ -1,9 +1,9 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const swaggerUi = require('swagger-ui-express')
-const swaggerDocument = require('swagger-jsdoc')
-const app = express()
-const db = require('./queries')
+const express = require('express');
+const bodyParser = require('body-parser');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('swagger-jsdoc');
+const app = express();
+const db = require('./queries');
 const port = 8000;
 
 const swaggerOptions = {
@@ -27,8 +27,8 @@ app.use(
 )
 
 app.get('/', (req, res) => {
-  res.send('main page')
-})
+  res.status(200).json('main page');
+});
 
 // Routes
 /**
@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
  *      '200':
  *        description: A successful response
  */
-app.get('/users', db.getUsers)
+app.get('/users', db.getUsers);
 
 /**
  * @swagger
@@ -57,7 +57,7 @@ app.get('/users', db.getUsers)
  *       '200':
  *         description: A successful response
  */
-app.get('/users/:id', db.getUserById)
+app.get('/users/:id', db.getUserById);
 
 /**
  * @swagger
@@ -84,7 +84,7 @@ app.get('/users/:id', db.getUserById)
  *       '201':
  *         description: A successful response
  */
-app.post('/users/:username/:email/:password', db.createUser)
+app.post('/users/:username/:email/:password', db.createUser);
 
 /**
  * @swagger
@@ -112,7 +112,7 @@ app.post('/users/:username/:email/:password', db.createUser)
  *       '200':
  *         description: A successful response
  */
-app.put('/users/:id/:username/:email/:password', db.updateUser)
+app.put('/users/:id/:username/:email/:password', db.updateUser);
 
 /**
  * @swagger
@@ -128,7 +128,7 @@ app.put('/users/:id/:username/:email/:password', db.updateUser)
  *       '200': 
  *         description: A successful response
  */
-app.delete('/users/deleteUser/:id', db.deleteUser)
+app.delete('/users/deleteUser/:id', db.deleteUser);
 
 /**
  * @swagger
@@ -139,7 +139,7 @@ app.delete('/users/deleteUser/:id', db.deleteUser)
  *      '200':
  *        description: A successful response
  */
-app.get('/music', db.getMusic)
+app.get('/music', db.getMusic);
 
 /**
  * @swagger
@@ -156,7 +156,7 @@ app.get('/music', db.getMusic)
  *       '200':
  *         description: A successful response
  */
-app.get('/music/getMusicByGenre/:genre', db.getMusicByGenre)
+app.get('/music/getMusicByGenre/:genre', db.getMusicByGenre);
 
 /**
  * @swagger
@@ -173,7 +173,7 @@ app.get('/music/getMusicByGenre/:genre', db.getMusicByGenre)
  *       '200':
  *         description: A successful response
  */
-app.get('/music/getMusicByTitle/:title', db.getMusicByTitle)
+app.get('/music/getMusicByTitle/:title', db.getMusicByTitle);
 
 /**
  * @swagger
@@ -190,7 +190,7 @@ app.get('/music/getMusicByTitle/:title', db.getMusicByTitle)
  *       '200':
  *         description: A successful response
  */
-app.get('/music/getMusicByArtist/:artist', db.getMusicByArtist)
+app.get('/music/getMusicByArtist/:artist', db.getMusicByArtist);
 
 /**
  * @swagger
@@ -201,7 +201,7 @@ app.get('/music/getMusicByArtist/:artist', db.getMusicByArtist)
  *       '200':
  *         description: A successful response
  */
-app.get('/playlists', db.getPlaylists)
+app.get('/playlists', db.getPlaylists);
 
 /**
  * @swagger
@@ -217,7 +217,7 @@ app.get('/playlists', db.getPlaylists)
  *       '200':
  *         description: A successful response
  */
-app.get('/playlists/getPlaylistById/:id', db.getPlaylistsbyUser)
+app.get('/playlists/getPlaylistById/:id', db.getPlaylistsbyUser);
 
 /**
  * @swagger
@@ -228,12 +228,12 @@ app.get('/playlists/getPlaylistById/:id', db.getPlaylistsbyUser)
  *       - in: path
  *         name: title
  *         type: string
- *         description: Title of playlist 
+ *         description: Title of playlist
  *     responses:
  *       '200':
  *         description: A successful response
  */
-app.get('/playlists/byTitle/:title', db.getPlaylistsbyPlaylistTitle)
+app.get('/playlists/byTitle/:title', db.getPlaylistsbyPlaylistTitle);
 
 /**
  * @swagger
@@ -253,7 +253,7 @@ app.get('/playlists/byTitle/:title', db.getPlaylistsbyPlaylistTitle)
  *       '200': 
  *         description: A successful response
  */
-app.delete('/playlists/remove/:id/:playlistTitle', db.getPlaylistsbyUser)
+app.delete('/playlists/remove/:id/:playlistTitle', db.getPlaylistsbyUser);
 
 /**
  * @swagger
@@ -277,7 +277,7 @@ app.delete('/playlists/remove/:id/:playlistTitle', db.getPlaylistsbyUser)
  *       '201':
  *         description: A successful response
  */
-app.post('/playlist/addSong/:id/:playlistTitle/:musicid', db.addSongToPlaylist)
+app.post('/playlist/addSong/:id/:playlistTitle/:musicid', db.addSongToPlaylist);
 
 /**
  * @swagger
@@ -301,8 +301,10 @@ app.post('/playlist/addSong/:id/:playlistTitle/:musicid', db.addSongToPlaylist)
  *       '201':
  *         description: A successful response
  */
-app.post('/playlist/removeSong/:id/:playlistTitle/:musicid', db.removeSongFromPlaylist)
+app.post('/playlist/removeSong/:id/:playlistTitle/:musicid', db.removeSongFromPlaylist);
 
 app.listen(port, () => {
-  console.log(`App running on port ${port}.`)
-})
+  console.log(`App running on port ${port}.`);
+});
+
+module.exports = app;

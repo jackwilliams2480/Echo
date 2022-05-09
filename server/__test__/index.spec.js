@@ -91,8 +91,8 @@ describe('/Music ', () => {
   test('GET all music', async() => {
     const res = await request(app).get('/music');
     expect(res.statusCode).toBe(200);
-    const users = res.body;
-    users.forEach(e => {
+    const music = res.body;
+    music.forEach(e => {
       expect(e.musicid).toBeTruthy();
     });
   });
@@ -125,6 +125,37 @@ describe('/Music ', () => {
     const music = res.body;
     music.forEach(e => {
       expect(e.artist).toMatch('Travis Scott');
+    });
+  });
+});
+
+describe('/playlists ', () => {
+  test('GET all playlists', async() => {
+    const res = await request(app).get('/playlists');
+    expect(res.statusCode).toBe(200);
+    const playlists = res.body;
+    playlists.forEach(e => {
+      expect(e.userid).toBeTruthy();
+    });
+  });
+
+  test('GET playlists by userid', async() => {
+    const res = await request(app).get('/playlists/1');
+    expect(res.statusCode).toBe(200);
+    const playlists = res.body;
+    playlists.forEach(e => {
+      expect(e.userid).toBe(1);
+    });
+  });
+
+  test('GET playlists by title', async() => {
+    const res = await request(app)
+    .get('/playlist/playlistTitle');
+    expect(res.statusCode).toBe(200);
+
+    const music = res.body;
+    music.forEach(e => {
+      expect(e.playlistTile).toMatch('playlistTitle');
     });
   });
 });

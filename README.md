@@ -42,7 +42,7 @@ Client-Server / N-tier architecture, built with Open Closed principle in mind.
 
 ## Testing:
 * After Build, open echo_server CLI
-* From CLI, run ``npm test``
+* From container CLI, run ``npm test``
 
 ## Stopping:
 * While still in the same Echo directory, run ``docker-compose down``

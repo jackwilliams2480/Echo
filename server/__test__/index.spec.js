@@ -27,14 +27,14 @@ describe('/Users ', () => {
   });
 
   test('GET users with id', async() => {
-    const res = await request(app).get('/users?id=1');
+    const res = await request(app).get('/users/2');
     expect(res.statusCode).toBe(200);
     const users = res.body;
     users.forEach(e => {
       expect(e.id).toBe(1);
-      expect(e.email).toMatch('abc@xyz');
+      expect(e.email).toMatch('linhpham@xyz');
       expect(e.password).toMatch('123');
-      expect(e.username).toMatch('JohnDoe');
+      expect(e.username).toMatch('LinhPham');
     });
   });
 
@@ -45,7 +45,7 @@ describe('/Users ', () => {
       email: 'tiffany@xyz',
     };
     const res = await request(app)
-    .post('/users?username=Tiffany&password=123&email=tiffany@xyz')
+    .post('/users/Tiffany/123/tiffany@xyz')
     // .send(newUser);
     expect(res.statusCode).toBe(200);
 
@@ -66,7 +66,7 @@ describe('/Users ', () => {
       email: 'johndoe@xyz',
     };
     const res = await request(app)
-    .put('/users?id=1&username=JohnDoe&password=123&email=johndoe@xyz')
+    .put('/users/1/JohnDoe/johndoe@xyz/123')
     // .send(newUser);
     expect(res.statusCode).toBe(200);
 
@@ -81,8 +81,50 @@ describe('/Users ', () => {
 
   test('DELETE user', async () => {
     const res = await request(app)
-    .delete('/users/deleteUser?id=1');
+    .delete('/users/deleteUser/1');
 
     expect(res.statusCode).toBe(200);
+  });
+});
+
+describe('/Music ', () => {
+  test('GET all music', async() => {
+    const res = await request(app).get('/music');
+    expect(res.statusCode).toBe(200);
+    const users = res.body;
+    users.forEach(e => {
+      expect(e.musicid).toBeTruthy();
+    });
+  });
+
+  test('GET music by genre', async() => {
+    const res = await request(app).get('/music/getMusicByGenre/Rap');
+    expect(res.statusCode).toBe(200);
+    const music = res.body;
+    music.forEach(e => {
+      expect(e.genre).toMatch('Rap');
+    });
+  });
+
+  test('GET music by title', async() => {
+    const res = await request(app)
+    .get('/music/getMusicByTitle/Drugs You Should Try It');
+    expect(res.statusCode).toBe(200);
+
+    const music = res.body;
+    music.forEach(e => {
+      expect(e.title).toMatch('Drugs You Should Try It');
+    });
+  });
+
+  test('GET music by artist', async() => {
+    const res = await request(app)
+    .get('/music/getMusicByArtist/Travis Scott');
+    expect(res.statusCode).toBe(200);
+
+    const music = res.body;
+    music.forEach(e => {
+      expect(e.artist).toMatch('Travis Scott');
+    });
   });
 });

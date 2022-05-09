@@ -1,3 +1,9 @@
+INSERT INTO users (username, email, password)
+VALUES('JohnDoe', 'abc@xyz', '123');
+
+INSERT INTO users (username, email, password)
+VALUES('LinhPham', 'linhpham@xyz', '123');
+
 --Travis Scott
 INSERT INTO music (artist, title, genre, location, duration, numOfPlay) 
 VALUES('Travis Scott', 'Drugs You Should Try It', 'Rap', 'server/audio_files/rap/travis_scott/Drugs You Should Try It.mp3', '3:29',23);

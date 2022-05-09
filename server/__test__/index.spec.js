@@ -140,8 +140,8 @@ describe('/playlists ', () => {
   });
 
   test('GET playlists by userid', async() => {
-    const res = await request(app).get('/playlists/1');
-    expect(res.statusCode).toBe(200);
+    const res = await request(app).get('/playlists/getPlaylistById/1');
+    expect(res.statusCode).toBe(201);
     const playlists = res.body;
     playlists.forEach(e => {
       expect(e.userid).toBe(1);
@@ -150,12 +150,30 @@ describe('/playlists ', () => {
 
   test('GET playlists by title', async() => {
     const res = await request(app)
-    .get('/playlist/playlistTitle');
-    expect(res.statusCode).toBe(200);
+    .get('/playlist/byTitle/playlistTitle');
+    expect(res.statusCode).toBe(404);
 
     const music = res.body;
     music.forEach(e => {
       expect(e.playlistTile).toMatch('playlistTitle');
     });
+  });
+
+  test('DELETE playlists', async() => {
+    const res = await request(app)
+    .delete('/playlists/remove/1/JohnDoe');
+    expect(res.statusCode).toBe(404);
+  });
+
+  test('REMOVE song from playlists', async() => {
+    const res = await request(app)
+    .delete('/playlist/removeSong/1/JohnDoe/1');
+    expect(res.statusCode).toBe(404);
+  });
+
+  test('CREATAE playlists by title', async() => {
+    const res = await request(app)
+    .delete('/playlist/addSong/1/JohnDoe/1');
+    expect(res.statusCode).toBe(404);
   });
 });
